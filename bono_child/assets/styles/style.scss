@@ -1,0 +1,21 @@
+/*
+Theme Name: Bono Child
+Theme URI: https://wpshop.ru/themes/bono
+Author: WPShop.ru
+Author URI: http://wpshop.ru/
+Template: bono
+Version: 1.0.0
+*/
+
+/* Below you can add your CSS styles */
+/* Ниже Вы можете добавить свои CSS стили */
+
+@import "general";
+@import "header";
+@import "slider";
+@import "categories";
+
+@media (min-width: 992px){
+.shop-grid--columns-4 .shop-item {
+    width: 26%;
+}}
