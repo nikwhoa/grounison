@@ -191,7 +191,7 @@ $header_style = ($header_style = $wpshop_core->get_option('header_style_type')) 
                     <?php //endif ?>
                 </a> -->
         <?php
-            //} 
+            //}
 
             if (strpos(get_permalink(), '/ee/') !== false) {
     $compare_products = theme_container()->get(CompareProducts::class);
@@ -233,7 +233,7 @@ $header_style = ($header_style = $wpshop_core->get_option('header_style_type')) 
                 </a>
         <?php
             }
-} 
+}
 
             if ($order == 'header_cart' && apply_filters('bono_enabled_minicart', true)) {
                 the_widget(MiniCart::class, 'title=', [

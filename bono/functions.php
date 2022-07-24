@@ -236,7 +236,7 @@ if ( ! function_exists( 'bono_track_product_view' ) ) {
 
 add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
  function jk_related_products_args( $args ) {
- 
+
 $args['posts_per_page'] = 3; // количество "Похожих товаров"
  $args['columns'] = 1; // количество колонок
  return $args;
@@ -244,7 +244,7 @@ $args['posts_per_page'] = 3; // количество "Похожих товар�
 
 add_filter( 'woocommerce_recently_viewed', 'jk_recently_viewed_products' );
  function jk_recently_viewed_products( $args ) {
- 
+
 $args['posts_per_page'] = 3; // количество "Похожих товаров"
  $args['columns'] = 1; // количество колонок
  return $args;
@@ -269,3 +269,18 @@ function register_my_widgets(){
 
 	) );
 }
+
+// function tishonator_customize_product_sorting($sorting_options){
+//     $sorting_options = array(
+//         'menu_order' => __( 'Sorting', 'tishonator' ),
+//         'popularity' => __( 'Sort by popularity', 'tishonator' ),
+//         'rating'     => __( 'Sort by average rating', 'tishonator' ),
+//         'date'       => __( 'Sort by newness', 'tishonator' ),
+//         'price'      => __( 'Sort by pricessssss: low to high', 'tishonator' ),
+//         'price-desc' => __( 'Sort by price: high to low', 'tishonator' ),
+//     );
+
+//     return $sorting_options;
+// }
+
+// add_filter('woocommerce_catalog_orderby', 'tishonator_customize_product_sorting');
