@@ -158,7 +158,7 @@ if ( ! empty( $slider_count_mod ) ) {
         <?php do_action( THEME_SLUG . '_slider_before' ) ?>
 
         <div class="card-slider-container swiper-container js-swiper-home">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper test">
 
                 <?php
                 $slider_thumbnails = [];

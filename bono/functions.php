@@ -270,17 +270,54 @@ function register_my_widgets(){
 	) );
 }
 
-// function tishonator_customize_product_sorting($sorting_options){
-//     $sorting_options = array(
-//         'menu_order' => __( 'Sorting', 'tishonator' ),
-//         'popularity' => __( 'Sort by popularity', 'tishonator' ),
-//         'rating'     => __( 'Sort by average rating', 'tishonator' ),
-//         'date'       => __( 'Sort by newness', 'tishonator' ),
-//         'price'      => __( 'Sort by pricessssss: low to high', 'tishonator' ),
-//         'price-desc' => __( 'Sort by price: high to low', 'tishonator' ),
-//     );
+/* Register a custom post type  */
 
-//     return $sorting_options;
-// }
+function wpdocs_codex_slider_init() {
+	$labels = array(
+		'name'                  => _x( 'Slider', 'Post type general name', 'textdomain' ),
+		'singular_name'         => _x( 'Slider', 'Post type singular name', 'textdomain' ),
+		'menu_name'             => _x( 'Slider', 'Admin Menu text', 'textdomain' ),
+		'name_admin_bar'        => _x( 'Slider', 'Add New on Toolbar', 'textdomain' ),
+		'add_new'               => __( 'Add Slide', 'textdomain' ),
+		'add_new_item'          => __( 'Add New Slider', 'textdomain' ),
+		'new_item'              => __( 'New Slider', 'textdomain' ),
+		'edit_item'             => __( 'Edit Slider', 'textdomain' ),
+		'view_item'             => __( 'View Slider', 'textdomain' ),
+		'all_items'             => __( 'All Slider', 'textdomain' ),
+		'search_items'          => __( 'Search Slider', 'textdomain' ),
+		'parent_item_colon'     => __( 'Parent Slider:', 'textdomain' ),
+		'not_found'             => __( 'No Slider found.', 'textdomain' ),
+		'not_found_in_trash'    => __( 'No Slider found in Trash.', 'textdomain' ),
+		'featured_image'        => _x( 'Slider Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'set_featured_image'    => _x( 'Set image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'remove_featured_image' => _x( 'Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'use_featured_image'    => _x( 'Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
+		'archives'              => _x( 'Slider archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain' ),
+		'insert_into_item'      => _x( 'Insert into products', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain' ),
+		'uploaded_to_this_item' => _x( 'Uploaded to this products', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain' ),
+		'filter_items_list'     => _x( 'Filter sliders list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'textdomain' ),
+		'items_list_navigation' => _x( 'Sliders list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
+		'items_list'            => _x( 'Sliders list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
+	);
 
-// add_filter('woocommerce_catalog_orderby', 'tishonator_customize_product_sorting');
+	$args = array(
+		'labels'             => $labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => array( 'slug' => 'slides' ),
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => true,
+		'menu_position'      => null,
+		'taxonomies'         => array('post_tag'),
+		'supports'           => array('title', 'thumbnail'),
+		'menu_icon'          => 'dashicons-format-gallery',
+	);
+
+	register_post_type( 'slide', $args );
+}
+
+add_action( 'init', 'wpdocs_codex_slider_init' );
