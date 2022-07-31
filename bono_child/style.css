@@ -51,7 +51,7 @@ button {
     text-align: center;
     width: 120px;
 }
-    
+
 
 .bono_child__btn {
   cursor: pointer;
@@ -154,7 +154,7 @@ button {
 }
 
 .main-page-post-wrapper {
-  margin-top: -500px;
+  /* margin-top: -500px; */
   padding: 20px 20px 0 20px;
   flex: 0 0 calc(50% - 40px);
   display: -webkit-box;
@@ -903,5 +903,3 @@ body {
     padding: 36px 0;
 }
 }
-
-

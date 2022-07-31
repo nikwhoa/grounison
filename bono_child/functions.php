@@ -240,5 +240,52 @@ function product_descrition_to_cart_items( $cart_item_data, $cart_item ){
     return $cart_item_data;
 }
 
-//sdfsdfdsf
 
+
+
+/**
+ * Change cart buttons
+ */
+
+add_action( 'woocommerce_widget_shopping_cart_buttons', function(){
+  // Removing Buttons
+  remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
+  remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
+
+  // Adding customized Buttons
+  add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_button_view_cart', 10 );
+  add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_proceed_to_checkout', 20 );
+}, 1 );
+
+// Custom cart button
+function custom_widget_shopping_cart_button_view_cart() {
+  $original_link = wc_get_cart_url();
+  $custom_link = home_url( '/cart' ); // HERE replacing cart link
+  echo '<a href="' . esc_url( $custom_link ) . '" class="button wc-forward">' . esc_html__( 'View cart', 'woocommerce' ) . '</a>';
+}
+
+// Custom Checkout button
+function custom_widget_shopping_cart_proceed_to_checkout() {
+  $original_link = wc_get_checkout_url();
+  $custom_link = home_url( '/checkout' ); // HERE replacing checkout link
+  echo '<a href="' . esc_url( $custom_link ) . '" class="button checkout wc-forward">' . esc_html__( 'Checkout', 'woocommerce' ) . '</a>';
+}
+
+
+
+
+// change the text of the add to cart button according to the language
+add_filter( 'woocommerce_product_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1 );
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1 );
+function woocommerce_custom_single_add_to_cart_text( $text ) {
+
+    // returns the current language "Polylang"
+    switch ( pll_current_language() ) {
+        case 'ru':
+            return __( 'В корзину', 'woocommerce' );
+        case 'ee':
+            return __( 'Lisa korvi', 'woocommerce' );
+    }
+
+    return $text;
+}
