@@ -56,9 +56,10 @@ foreach ($tags as $tag) {
 }
 // $postID = get_the_ID();
 // echo '<h1>'. wp_get_post_tags($postID) .'</h1>';
+$categories = get_the_category($post->ID);
 ?>
 
-<div class="post-card <?php echo implode( ' ', $post_card_classes ) ?> <?php echo $asdfsdf ?>" <?php echo implode( ' ', $post_card_attributes ) ?>>
+<div class="post-card <?php echo implode( ' ', $post_card_classes ); ?> <?php foreach($categories as $category){ echo $category->slug;} ?>" <?php echo implode( ' ', $post_card_attributes ) ?>>
     <?php $thumb_in_order = true ?>
     <?php if ( $post_card_order && $post_card_order[0] === 'thumbnail' && ! empty( $thumb ) && $post_card->doShowElement( 'thumbnail' ) ) : ?>
         <?php $thumb_in_order = true ?>
@@ -142,9 +143,23 @@ foreach ($tags as $tag) {
             }
         }
 
+
         if ( $order == 'excerpt' && $post_card->doShowElement( 'excerpt' ) ) {
+
             echo '<div class="post-card__description">';
-            echo $wpshop_helper->substring_by_word( get_the_excerpt(), $description_length );
+            if (has_category('vertical')) {
+                $content = get_the_content();
+                $content = strip_tags($content);
+                echo substr($content, 0, 650) . '...';
+            }
+            elseif (has_category('vertical-ru')) {
+                $content = get_the_content();
+                $content =  strip_tags($content);
+                echo mb_substr($content, 0, 560, 'utf-8') . '...';
+            }
+            else {
+                echo $wpshop_helper->substring_by_word( get_the_excerpt(), $description_length );
+            }
             echo '</div>';
         }
 
