@@ -7,6 +7,19 @@
  * @package Bono
  */
 
+function load_swiper_bundle()
+{
+  wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), false, true);
+}
+function bono_child_script_enqueue_script()
+{
+  wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/script.js', array('swiper'), false, true);
+}
+
+add_action('wp_enqueue_scripts', 'bono_child_script_enqueue_script');
+add_action('wp_enqueue_scripts', 'load_swiper_bundle');
+
+
 /**
  * Enqueue child styles
  *
@@ -21,10 +34,13 @@ function enqueue_child_theme_styles()
 /*
 * Load google fonts
 */
-function wpb_add_google_fonts() {
-  wp_enqueue_style('wpb-google-fonts',
-  'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap',
-  false);
+function wpb_add_google_fonts()
+{
+  wp_enqueue_style(
+    'wpb-google-fonts',
+    'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap',
+    false
+  );
 }
 
 add_action('wp_enqueue_scripts', 'wpb_add_google_fonts');
@@ -184,108 +200,126 @@ function customizing_on_hold_email_subject($formated_subject, $order)
   }
 }
 
-add_filter( 'woocommerce_subcategory_count_html', 'filter_function_name_4815', 10, 2 );
-function filter_function_name_4815( $html, $category ){
-	// filter...
+add_filter('woocommerce_subcategory_count_html', 'filter_function_name_4815', 10, 2);
+function filter_function_name_4815($html, $category)
+{
+  // filter...
 
-	return false;
+  return false;
 }
 
 //dsfsdf
 
 // cart and checkout inline styles (To be removed and added in your theme styles.css file)
-add_action( 'wp_head', 'custom_inline_styles', 900 );
-function custom_inline_styles(){
-    if ( is_checkout() || is_cart() ){
-        ?><style>
-        .product-item-thumbnail { float:left; padding-right:10px;}
-        .product-item-thumbnail img { margin: 0 !important;}
-        .product-name{display: flex;align-items: center;}
-        </style><?php
-    }
-}
+add_action('wp_head', 'custom_inline_styles', 900);
+function custom_inline_styles()
+{
+  if (is_checkout() || is_cart()) {
+?><style>
+      .product-item-thumbnail {
+        float: left;
+        padding-right: 10px;
+      }
 
-// Product thumbnail in checkout
-add_filter( 'woocommerce_cart_item_name', 'product_thumbnail_in_checkout', 20, 3 );
-function product_thumbnail_in_checkout( $product_name, $cart_item, $cart_item_key ){
-    if ( is_checkout() ) {
+      .product-item-thumbnail img {
+        margin: 0 !important;
+      }
 
-        $thumbnail   = $cart_item['data']->get_image(array( 70, 70));
-        $image_html  = '<div class="product-item-thumbnail">'.$thumbnail.'</div> ';
+      .product-name {
+        display: flex;
+        align-items: center;
+      }
+    </style><?php
+          }
+        }
 
-        $product_name = $image_html . $product_name;
-    }
-    return $product_name;
-}
+        // Product thumbnail in checkout
+        add_filter('woocommerce_cart_item_name', 'product_thumbnail_in_checkout', 20, 3);
+        function product_thumbnail_in_checkout($product_name, $cart_item, $cart_item_key)
+        {
+          if (is_checkout()) {
 
-// Cart item qquantity in checkout
-add_filter( 'woocommerce_checkout_cart_item_quantity', 'filter_checkout_cart_item_quantity', 20, 3 );
-function filter_checkout_cart_item_quantity( $quantity_html, $cart_item, $cart_item_key ){
-    return ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong><br clear="all">';
-}
+            $thumbnail   = $cart_item['data']->get_image(array(70, 70));
+            $image_html  = '<div class="product-item-thumbnail">' . $thumbnail . '</div> ';
 
-// Product attribute in cart and checkout
-add_filter( 'woocommerce_get_item_data', 'product_descrition_to_cart_items', 20, 2 );
-function product_descrition_to_cart_items( $cart_item_data, $cart_item ){
-    $product_id = $cart_item['product_id'];
-    $product = wc_get_product($product_id);
-    $taxonomy = 'pa_delivery';
-    $value = $product->get_attribute($taxonomy);
-    if ($product->get_attribute($taxonomy)) {
-        $cart_item_data[] = array(
-            'name' => get_taxonomy($taxonomy)->labels->singular_name,
-            'value' => $product->get_attribute($taxonomy),
-        );
-    }
-    return $cart_item_data;
-}
+            $product_name = $image_html . $product_name;
+          }
+          return $product_name;
+        }
 
+        // Cart item qquantity in checkout
+        add_filter('woocommerce_checkout_cart_item_quantity', 'filter_checkout_cart_item_quantity', 20, 3);
+        function filter_checkout_cart_item_quantity($quantity_html, $cart_item, $cart_item_key)
+        {
+          return ' <strong class="product-quantity">' . sprintf('&times; %s', $cart_item['quantity']) . '</strong><br clear="all">';
+        }
 
-
-
-/**
- * Change cart buttons
- */
-
-add_action( 'woocommerce_widget_shopping_cart_buttons', function(){
-  // Removing Buttons
-  remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
-  remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
-
-  // Adding customized Buttons
-  add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_button_view_cart', 10 );
-  add_action( 'woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_proceed_to_checkout', 20 );
-}, 1 );
-
-// Custom cart button
-function custom_widget_shopping_cart_button_view_cart() {
-  $original_link = wc_get_cart_url();
-  $custom_link = home_url( '/cart' ); // HERE replacing cart link
-  echo '<a href="' . esc_url( $custom_link ) . '" class="button wc-forward">' . esc_html__( 'View cart', 'woocommerce' ) . '</a>';
-}
-
-// Custom Checkout button
-function custom_widget_shopping_cart_proceed_to_checkout() {
-  $original_link = wc_get_checkout_url();
-  $custom_link = home_url( '/checkout' ); // HERE replacing checkout link
-  echo '<a href="' . esc_url( $custom_link ) . '" class="button checkout wc-forward">' . esc_html__( 'Checkout', 'woocommerce' ) . '</a>';
-}
+        // Product attribute in cart and checkout
+        add_filter('woocommerce_get_item_data', 'product_descrition_to_cart_items', 20, 2);
+        function product_descrition_to_cart_items($cart_item_data, $cart_item)
+        {
+          $product_id = $cart_item['product_id'];
+          $product = wc_get_product($product_id);
+          $taxonomy = 'pa_delivery';
+          $value = $product->get_attribute($taxonomy);
+          if ($product->get_attribute($taxonomy)) {
+            $cart_item_data[] = array(
+              'name' => get_taxonomy($taxonomy)->labels->singular_name,
+              'value' => $product->get_attribute($taxonomy),
+            );
+          }
+          return $cart_item_data;
+        }
 
 
 
 
-// change the text of the add to cart button according to the language
-add_filter( 'woocommerce_product_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1 );
-add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1 );
-function woocommerce_custom_single_add_to_cart_text( $text ) {
+        /**
+         * Change cart buttons
+         */
 
-    // returns the current language "Polylang"
-    switch ( pll_current_language() ) {
-        case 'ru':
-            return __( 'В корзину', 'woocommerce' );
-        case 'ee':
-            return __( 'Lisa korvi', 'woocommerce' );
-    }
+        add_action('woocommerce_widget_shopping_cart_buttons', function () {
+          // Removing Buttons
+          remove_action('woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10);
+          remove_action('woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20);
 
-    return $text;
-}
+          // Adding customized Buttons
+          add_action('woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_button_view_cart', 10);
+          add_action('woocommerce_widget_shopping_cart_buttons', 'custom_widget_shopping_cart_proceed_to_checkout', 20);
+        }, 1);
+
+        // Custom cart button
+        function custom_widget_shopping_cart_button_view_cart()
+        {
+          $original_link = wc_get_cart_url();
+          $custom_link = home_url('/cart'); // HERE replacing cart link
+          echo '<a href="' . esc_url($custom_link) . '" class="button wc-forward">' . esc_html__('View cart', 'woocommerce') . '</a>';
+        }
+
+        // Custom Checkout button
+        function custom_widget_shopping_cart_proceed_to_checkout()
+        {
+          $original_link = wc_get_checkout_url();
+          $custom_link = home_url('/checkout'); // HERE replacing checkout link
+          echo '<a href="' . esc_url($custom_link) . '" class="button checkout wc-forward">' . esc_html__('Checkout', 'woocommerce') . '</a>';
+        }
+
+
+
+
+        // change the text of the add to cart button according to the language
+        add_filter('woocommerce_product_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1);
+        add_filter('woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_single_add_to_cart_text', 99, 1);
+        function woocommerce_custom_single_add_to_cart_text($text)
+        {
+
+          // returns the current language "Polylang"
+          switch (pll_current_language()) {
+            case 'ru':
+              return __('В корзину', 'woocommerce');
+            case 'ee':
+              return __('Lisa korvi', 'woocommerce');
+          }
+
+          return $text;
+        }

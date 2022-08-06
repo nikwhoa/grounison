@@ -12,6 +12,7 @@ $do_init = is_front_page() || is_home();
 <?php if ( $do_init ): ?>
     <!-- init swiper -->
     <script type="text/javascript">
+
         <?php foreach ($slider->get_slider_params() as $id => $options): ?>
 
         <?php $delay = max( 0, absint( $options['delay'] ) ) ?>
