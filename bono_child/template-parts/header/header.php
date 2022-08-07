@@ -103,7 +103,7 @@ $header_style = ($header_style = $wpshop_core->get_option('header_style_type')) 
                 </div>
             <?php endif; ?>
 
-            <?php if ($order == 'header_favorite') : ?>
+            <?php  if ($order === 'header_favorite') : ?>
                 <?php get_template_part('template-parts/header/favorites'); ?>
             <?php endif; ?>
 
@@ -112,6 +112,7 @@ $header_style = ($header_style = $wpshop_core->get_option('header_style_type')) 
             <?php endif; ?>
 
             <?php if ($order == 'header_cart') : ?>
+
                 <?php if (apply_filters('bono_enabled_minicart', true)) {
                     the_widget(MiniCart::class, 'title=', [
                         'wc_cart_widget_args' => [],
@@ -119,9 +120,10 @@ $header_style = ($header_style = $wpshop_core->get_option('header_style_type')) 
                 }
                 ?>
             <?php endif; ?>
-            <!-- foreach end -->
         <?php }  ?>
         <!-- foreach end -->
         <div class="humburger js-humburger"><span></span><span></span><span></span></div>
     </div>
 </header><!-- #masthead -->
+
+<?php do_action(THEME_SLUG . '_after_header') ?>

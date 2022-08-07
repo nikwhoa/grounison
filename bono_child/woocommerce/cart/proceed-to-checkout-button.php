@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Proceed to checkout button
  *
@@ -17,11 +18,17 @@
  * @version 2.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 ?>
+<?php if (strpos(get_permalink(), '/ee/') !== false) { ?>
+	<a href="<?php echo get_site_url(); ?>/ee/checkout" class="checkout-button button alt wc-forward">
+		<?php esc_html_e('Proceed to checkout', 'woocommerce'); ?>
+	</a>
 
-<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward">
-	<?php esc_html_e( 'Proceed to checkout', 'woocommerce' ); ?>
-</a>
+<?php } else { ?>
+	<a href="<?php echo get_site_url(); ?>/ru/checkout" class="checkout-button button alt wc-forward">
+		<?php esc_html_e('Proceed to checkout', 'woocommerce'); ?>
+	</a>
+<?php } ?>
