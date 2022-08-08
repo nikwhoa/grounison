@@ -292,7 +292,7 @@ function custom_inline_styles()
         function custom_widget_shopping_cart_button_view_cart()
         {
           $original_link = wc_get_cart_url();
-          $custom_link = home_url('/cart'); // HERE replacing cart link
+          $custom_link = home_url('/cart'); // HERE replacing checkout link
           echo '<a href="' . esc_url($custom_link) . '" class="button wc-forward">' . esc_html__('View cart', 'woocommerce') . '</a>';
         }
 

@@ -17,14 +17,21 @@ const translate = (text, selector, several = false) => {
 
 setTimeout(() => {
     const path = window.location.pathname[1];
+    const el = document.querySelector('.button.checkout');
+    const el2 = document.querySelector('.button.wc-forward');
+    console.log(el.href);
     switch (path) {
         case 'e':
             translate('Vaata ostukorvi', '.button.wc-forward');
             translate('Maksma', '.button.checkout');
+            el.href = 'https://grounison.com/ee/checkout'
+            el2.href = 'https://grounison.com/ee/cart'
             break;
         case 'r':
             translate('Просмотр корзины', '.button.wc-forward');
             translate('Оформление заказа', '.button.checkout');
+            el.href = 'https://grounison.com/ru/checkout'
+            el2.href = 'https://grounison.com/ru/cart'
             break;
         default:
             break;
