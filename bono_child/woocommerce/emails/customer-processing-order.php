@@ -28,7 +28,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php if($order->get_customer_note() == "ee") {echo '<div style="font-size: 28px;font-weight: 600;color: #0a0a0a;">Hea '.$order->get_billing_first_name().',</div>';} if($order->get_customer_note() == "lv") {echo '<div style="font-size: 28px;font-weight: 600;color: #0a0a0a;">Sveiki '.$order->get_billing_first_name().',</div>';} if($order->get_customer_note() == "ru") {echo '<div style="font-size: 28px;font-weight: 600;color: #0a0a0a;">Привет, '.$order->get_billing_first_name().'!</div>';} if($order->get_customer_note() == "fi") {echo '<div style="font-size: 28px;font-weight: 600;color: #0a0a0a;">Hea '.$order->get_billing_first_name().',</div>';} if($order->get_customer_note() == "lt") {echo '<div style="font-size: 28px;font-weight: 600;color: #0a0a0a;">Sveiki '.$order->get_billing_first_name().'!</div>';} ?><br>
 <b style="font-size: 28px;color: #0a0a0a;font-family: Helvetica,Arial,sans-serif;font-weight: 400;padding: 0;line-height: 3.3;"><?php if($order->get_customer_note() == "lt") {echo 'Ačiū už užsakymą!';} if($order->get_customer_note() == "ee") {echo 'Täname tellimuse eest!';} if($order->get_customer_note() == "ru") {echo 'Спасибо за заказ!';} if($order->get_customer_note() == "fi") {echo 'Täname tellimuse eest!';} if($order->get_customer_note() == "lv") {echo 'Paldies par pasūtījumu!';} ?></b><br>
-<?php 
+<?php
 if($order->get_customer_note() == "ee") {echo '
 <p style="
     color: #0a0a0a;
@@ -528,7 +528,7 @@ sales.barberpro@gmail.com </p>
                                        <tbody>
                                           <tr style="padding:0;text-align:left;vertical-align:top">
                                              <th style="margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left">
-  
+
                                              </th>
                                           </tr>
                                        </tbody>
@@ -618,7 +618,7 @@ sales.barberpro@gmail.com </p>
                   </tr>
                </tbody>
             </table>
-            
+
 
 
 <?php
@@ -682,7 +682,7 @@ foreach ( $order->get_items() as $item_id => $item ) {
    ';
 }
 ?>
- 
+
 
 
 

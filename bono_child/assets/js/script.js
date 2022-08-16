@@ -19,19 +19,78 @@ setTimeout(() => {
     const path = window.location.pathname[1];
     const el = document.querySelector('.button.checkout');
     const el2 = document.querySelector('.button.wc-forward');
-    console.log(el.href);
+    // Link to the cart in mobile burger menu
+    const linkToCart = document.querySelectorAll('.js-header-cart-link');
+    const mobileCart = document.querySelector('.site-header-cart-hidden');
+    const hamburgerMenu = document.querySelector('.js-humburger');
+    const mobileMenuPlaceholder = document.querySelector(
+        '.js-mobile-menu-placeholder'
+    );
+    const shit = document.querySelector('.main-navigation');
+
+    const siteHeaderCart = document.querySelector('.site-header-cart');
+    const widget_shopping_cart_content = document.querySelector('.widget_shopping_cart_content');
+
+    widget_shopping_cart_content.style.width = '100%';
+
+    const woocommerceMiniCartTotal = document.querySelector('.woocommerce-mini-cart__total')
+
     switch (path) {
         case 'e':
             translate('Vaata ostukorvi', '.button.wc-forward');
+            woocommerceMiniCartTotal.children[0].textContent = 'Vahesumma:';
             translate('Maksma', '.button.checkout');
-            el.href = 'https://grounison.com/ee/checkout'
-            el2.href = 'https://grounison.com/ee/cart'
+            el.href = 'https://grounison.com/ee/checkout';
+            el2.href = 'https://grounison.com/ee/cart';
+            linkToCart.forEach((element) => {
+                element.href = 'https://grounison.com/ee/cart';
+                element.addEventListener('click', (e) => {
+                    if (window.innerWidth < 500) {
+                        mobileCart.style.width = '100%';
+
+                        if (hamburgerMenu.classList.contains('open')) {
+                            hamburgerMenu.classList.remove('open');
+                        }
+
+                        if (mobileMenuPlaceholder.classList.contains('open')) {
+                            mobileMenuPlaceholder.classList.remove('open');
+                        }
+                        if (shit.style.display === 'block') {
+                            shit.style.display = 'none';
+                        }
+
+                        siteHeaderCart.hidden = false;
+                    }
+                });
+            });
+
             break;
         case 'r':
             translate('Просмотр корзины', '.button.wc-forward');
             translate('Оформление заказа', '.button.checkout');
-            el.href = 'https://grounison.com/ru/checkout'
-            el2.href = 'https://grounison.com/ru/cart'
+            el.href = 'https://grounison.com/ru/checkout';
+            el2.href = 'https://grounison.com/ru/cart';
+            linkToCart.forEach((element) => {
+                element.href = 'https://grounison.com/ru/cart';
+                element.addEventListener('click', (e) => {
+                    if (window.innerWidth < 500) {
+                        mobileCart.style.width = '100%';
+
+                        if (hamburgerMenu.classList.contains('open')) {
+                            hamburgerMenu.classList.remove('open');
+                        }
+
+                        if (mobileMenuPlaceholder.classList.contains('open')) {
+                            mobileMenuPlaceholder.classList.remove('open');
+                        }
+                        if (shit.style.display === 'block') {
+                            shit.style.display = 'none';
+                        }
+
+                        siteHeaderCart.hidden = false;
+                    }
+                });
+            });
             break;
         default:
             break;
