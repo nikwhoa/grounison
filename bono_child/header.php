@@ -186,7 +186,7 @@ $advertising = theme_container()->get(Advertising::class);
 					document.getElementsByClassName('button wc-backward')[0].innerText = 'Tagasi poodi';
 				}
 				if (document.getElementsByClassName('button wc-backward')[0].getAttribute('href').indexOf('/ee/shop/') == -1) {
-					document.getElementsByClassName('button wc-backward')[0].setAttribute('href', document.getElementsByClassName('button wc-backward')[0].getAttribute('href').replace('/shop/', '/ee/shop/'));
+					document.getElementsByClassName('button wc-backward')[0].setAttribute('href', document.getElementsByClassName('button wc-backward')[0].getAttribute('href').replace('/ru/shop/', '/ee/shop/'));
 				}
 			}
 			setTimeout(cartEmptyLoopEe, 10);

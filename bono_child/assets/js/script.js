@@ -29,19 +29,36 @@ setTimeout(() => {
     const shit = document.querySelector('.main-navigation');
 
     const siteHeaderCart = document.querySelector('.site-header-cart');
-    const widget_shopping_cart_content = document.querySelector('.widget_shopping_cart_content');
+    const widget_shopping_cart_content = document.querySelector(
+        '.widget_shopping_cart_content'
+    );
 
     widget_shopping_cart_content.style.width = '100%';
 
-    const woocommerceMiniCartTotal = document.querySelector('.woocommerce-mini-cart__total')
+    const woocommerceMiniCartTotal = document.querySelector(
+        '.woocommerce-mini-cart__total'
+    );
 
     switch (path) {
         case 'e':
+
+            if (window.location.pathname.includes('order-received')) {
+                console.log(true);
+                document.querySelector(
+                    '.woocommerce-order-details'
+                ).children[2].children[0].textContent = 'Valeted terminal';
+            } else {
+                console.log(false);
+            }
+
             translate('Vaata ostukorvi', '.button.wc-forward');
-            woocommerceMiniCartTotal.children[0].textContent = 'Vahesumma:';
+
             translate('Maksma', '.button.checkout');
             el.href = 'https://grounison.com/ee/checkout';
             el2.href = 'https://grounison.com/ee/cart';
+
+
+
             linkToCart.forEach((element) => {
                 element.href = 'https://grounison.com/ee/cart';
                 element.addEventListener('click', (e) => {
@@ -63,7 +80,7 @@ setTimeout(() => {
                     }
                 });
             });
-
+            woocommerceMiniCartTotal.children[0].textContent = 'Vahesumma:';
             break;
         case 'r':
             translate('Просмотр корзины', '.button.wc-forward');
@@ -91,6 +108,7 @@ setTimeout(() => {
                     }
                 });
             });
+            woocommerceMiniCartTotal.children[0].textContent = 'Подытог:';
             break;
         default:
             break;
