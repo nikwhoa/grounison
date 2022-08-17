@@ -62,7 +62,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 194px;
     }
-    
+
     .page-title{
         padding-left: 194px;
     }
@@ -72,7 +72,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 195px;
     }
-    
+
     .page-title{
         padding-left: 195px;
     }
@@ -82,7 +82,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 150px;
     }
-    
+
     .page-title{
         padding-left: 150px;
     }
@@ -92,7 +92,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 108px;
     }
-    
+
     .page-title{
         padding-left: 146px;
     }
@@ -102,7 +102,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 80px;
     }
-    
+
     .page-title{
         padding-left: 146px;
     }
@@ -112,7 +112,7 @@ color: #282828;
     }
 @media (max-width:770px){
     .frig:hover{
-padding: 8px 0px; 
+padding: 8px 0px;
 }
     .btn-ktore-mob{
         display: block;
@@ -156,66 +156,66 @@ padding: 8px 0px;
     .woocommerce-breadcrumb{
         padding-left: 315px;
     }
-    
+
     .page-title{
         padding-left: 315px;
     }
 }
 
-@media (min-width:1500px){  
+@media (min-width:1500px){
 
     .breadcrumb{
         left:-25vw !important;
         padding-left:25px;
         padding-bottom:10px;
     }
-    
+
     .woocommerce-breadcrumb{
         padding-left: 505px;
     }
-    
+
     .page-title{
         left: -25vw !important;
         width:155vw !important;
         padding-left: 505px;
     }
-    
+
 }
 
-@media (min-width:1550px){  
+@media (min-width:1550px){
 
     .breadcrumb{
         left:-25vw !important;
         padding-left:25px;
         padding-bottom:10px;
     }
-    
+
     .woocommerce-breadcrumb{
         padding-left: 358px;
     }
-    
+
     .page-title{
         left: -25vw !important;
         width:155vw !important;
         padding-left: 433px;
     }
-    
+
 }
 
 
-@media (min-width:1600px){  
+@media (min-width:1600px){
 
     .breadcrumb{
         padding-left:490px;
         padding-bottom:10px;
         width:155vw !important;
     }
-    
+
     .woocommerce-breadcrumb{
         padding-left: 465px;
         left:-25vw !important;
     }
-    
+
     .page-title{
         left: -25vw !important;
         width:155vw !important;
@@ -224,22 +224,16 @@ padding: 8px 0px;
 
 }
 
-@media (min-width:1920px){  
+@media (min-width:1920px){
 
-    
+
     .page-title{
         left: -20vw !important;
     }
-    
+
 }
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>
-function jopa(){
-window.scrollTo(0, 0);
-};
-//sdfsdasdsdfsdfsdfgsdfrtyt
-</script>
+
 
 <div <?php wc_product_class( "shop-item shop-item--type-{$card_type}{$fix_add_to_cart} " . $availability['class'], $product ) ?>>
 
@@ -316,14 +310,14 @@ window.scrollTo(0, 0);
 $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $url = explode('?', $url);
 $url = $url[0];
- 
+
 ?>
 
 
 <?php if (strpos(get_permalink(), '/ee/') !== false) {
-    ?><?php woocommerce_template_loop_add_to_cart() ?><!--<a href="?add-to-cart=<? //echo $product->get_id(); ?>" data-quantity="1" class="add_to_cart_button ajax_add_to_cart frig btn-ktore-pc" data-product_id="<? //echo $product->get_id(); ?>" rel="nofollow"><?//echo 'OSTA';?></a>--><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" class="add_to_cart_button ajax_add_to_cart frig btn-ktore-mob" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'OSTA';?></a><?
+    ?><?php woocommerce_template_loop_add_to_cart() ?><?
 }else{
-    ?><?php woocommerce_template_loop_add_to_cart() ?><a style="position: absolute;opacity:0;" href="?add-to-cart=<? //echo $product->get_id(); ?>" data-quantity="1" class="add_to_cart_button frig btn-ktore-pc js-header-cart-link" data-product_id="<? //echo $product->get_id(); ?>" rel="nofollow"><?//echo 'КУПИТЬ';?></a><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" onclick="jopa()" id="btn-ktore-mob" class="add_to_cart_button ajax_add_to_cart frig btn-ktore-mob" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'КУПИТЬ';?></a>
+    ?><?php woocommerce_template_loop_add_to_cart() ?>
     <?
 } ?></div>
 

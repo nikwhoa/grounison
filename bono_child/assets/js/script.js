@@ -19,7 +19,6 @@ setTimeout(() => {
     const path = window.location.pathname[1];
     const el = document.querySelector('.button.checkout');
     const el2 = document.querySelector('.button.wc-forward');
-    // Link to the cart in mobile burger menu
     const linkToCart = document.querySelectorAll('.js-header-cart-link');
     const mobileCart = document.querySelector('.site-header-cart-hidden');
     const hamburgerMenu = document.querySelector('.js-humburger');
@@ -41,7 +40,6 @@ setTimeout(() => {
 
     switch (path) {
         case 'e':
-
             if (window.location.pathname.includes('order-received')) {
                 console.log(true);
                 document.querySelector(
@@ -56,8 +54,6 @@ setTimeout(() => {
             translate('Maksma', '.button.checkout');
             el.href = 'https://grounison.com/ee/checkout';
             el2.href = 'https://grounison.com/ee/cart';
-
-
 
             linkToCart.forEach((element) => {
                 element.href = 'https://grounison.com/ee/cart';
@@ -138,20 +134,20 @@ setTimeout(() => {
 // });
 
 // hide logo if search has been clicked
-const searchIcon = document.querySelector('.js-header-search-ico');
-const siteLogotype = document.querySelector('.site-logotype');
+// const searchIcon = document.querySelector('.js-header-search-ico');
+// const siteLogotype = document.querySelector('.site-logotype');
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    let a = getComputedStyle(siteLogotype);
-    searchIcon.addEventListener('click', (e) => {
-        if (window.outerWidth <= 600) {
-            if (a.visibility == 'visible') {
-                siteLogotype.style.visibility = 'hidden';
-            } else {
-                siteLogotype.style.visibility = 'visible';
-            }
-        }
-        //  ? siteLogotype.style.display = 'none'  : siteLogotype.style.display = 'block'
-        // TODO: hide logo if click on the search
-    });
-});
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     let a = getComputedStyle(siteLogotype);
+//     searchIcon.addEventListener('click', (e) => {
+//         if (window.outerWidth <= 600) {
+//             if (a.visibility == 'visible') {
+//                 siteLogotype.style.visibility = 'hidden';
+//             } else {
+//                 siteLogotype.style.visibility = 'visible';
+//             }
+//         }
+//         //  ? siteLogotype.style.display = 'none'  : siteLogotype.style.display = 'block'
+//         // TODO: hide logo if click on the search
+//     });
+// });

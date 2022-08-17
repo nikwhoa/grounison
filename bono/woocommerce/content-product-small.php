@@ -62,7 +62,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 252px;
     }
-    
+
     .page-title{
         padding-left: 252px;
     }
@@ -72,7 +72,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 239px;
     }
-    
+
     .page-title{
         padding-left: 239px;
     }
@@ -82,7 +82,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 180px;
     }
-    
+
     .page-title{
         padding-left: 180px;
     }
@@ -92,7 +92,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 108px;
     }
-    
+
     .page-title{
         padding-left: 146px;
     }
@@ -102,7 +102,7 @@ color: #282828;
     .woocommerce-breadcrumb{
         padding-left: 80px;
     }
-    
+
     .page-title{
         padding-left: 146px;
     }
@@ -112,7 +112,7 @@ color: #282828;
     }
 @media (max-width:770px){
     .frig:hover{
-padding: 8px 0px; 
+padding: 8px 0px;
 }
     .btn-ktore-mob{
         display: block;
@@ -230,9 +230,9 @@ window.scrollTo(0, 0);
 $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $url = explode('?', $url);
 $url = $url[0];
- 
+
 ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
@@ -245,7 +245,7 @@ jQuery(".site-header-cart").click();
 <?php if (strpos(get_permalink(), '/ee/') !== false) {
     ?><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" class="btn-ktore-pc add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'OSTA';?></a><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" class="btn-ktore-mob add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'OSTA';?></a><?
 }else{
-    ?><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" class="btn-ktore-pc add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'КУПИТЬ';?></a><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" onclick="jopa()" id="btn-ktore-mob" class="btn-ktore-mob add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'КУПИТЬ';?></a>
+    ?><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" class="btn-ktore-pc add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'КУПИТЬ';?></a><a href="?add-to-cart=<? echo $product->get_id(); ?>" data-quantity="1" id="btn-ktore-mob" class="btn-ktore-mob add_to_cart_button ajax_add_to_cart frig" data-product_id="<? echo $product->get_id(); ?>" rel="nofollow"><?echo 'КУПИТЬ';?></a>
     <?
 } ?></div>
 

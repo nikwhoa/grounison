@@ -6,7 +6,7 @@
  *
  * @package Bono
  */
-
+if ( !is_admin() ) wp_deregister_script('jquery');
 function load_swiper_bundle()
 {
   wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array('jquery'), false, true);
